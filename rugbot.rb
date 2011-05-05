@@ -222,8 +222,9 @@ on :channel, /(https?:\/\/\S+)/i do |url|
     end
 
     title = Nokogiri::HTML(easy.body_str).css('title').first.content
-    msg channel, "#{title}"
-  rescue
+    msg channel, "#{title.gsub(/\s+/m, " ").strip}"
+  rescue StandardError => e
+    puts "general http link got error: #{e}"
   end
 end
 
