@@ -186,7 +186,7 @@ end
 # http://twitter.com/stealthygecko/status/20892091689
 # http://twitter.com/#!/stealthygecko/status/20892091689
 # And https | trailing /
-on :channel, /https?:\/\/twitter.com(?:\/#!)?\/[\w-]+\/status\/(\d+)/i do |tweet_id|
+on :channel, /https?:\/\/twitter.com(?:\/#!)?\/[\w-]+\/status(?:es)?\/(\d+)/i do |tweet_id|
   log_user_seen(nick)
 
   begin
