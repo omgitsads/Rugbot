@@ -30,7 +30,12 @@ on :connect do
 end
 
 on :channel, /^dance$/i do
-  msg channel, "http://no.gd/caiusboogie.gif"
+  if [0,1].shuffle.first == 1
+    msg channel "EVERYBODY DANCE NOW!"
+    action channel, "does the funky chicken"
+  else
+    msg channel, "http://no.gd/caiusboogie.gif"
+  end
 end
 
 on :channel, /^meme ([A-Z_\-]+) (.+)$/i do |meme, words|
