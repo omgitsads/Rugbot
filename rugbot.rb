@@ -140,7 +140,7 @@ end
 
 on :channel, /^stab (.*?)$/i do |user|
   log_user_seen(nick)
-  user = nick if %w(rugbot self yourself).include?(user)
+  user = nick if %w(rugbot self yourself).include?(user) || nick[/djgraham/]
 
   action channel, "stabs #{user}"
 end
