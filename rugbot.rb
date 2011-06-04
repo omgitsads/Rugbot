@@ -57,7 +57,12 @@ end
 
 on :channel, /^trollface$/i do
   log_user_seen(nick)
-  msg channel, "http://no.gd/troll.png"
+  msg channel, ["http://no.gd/troll.png", "http://no.gd/trolldance.gif"].shuffle.first
+end
+
+on :channel, /^boner/ do
+  log_user_seen(nick)
+  msg channel, "http://files.myopera.com/coxy/albums/106123/trex-boner.jpg"
 end
 
 on :channel, /^(help|commands)$/i do
