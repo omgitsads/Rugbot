@@ -148,7 +148,7 @@ end
 on :channel, /^b(oo|ew)bs$/ do |user|
   log_user_seen(nick)
 
-  msg channel, "(.)(.)"
+  msg channel, ["(.)(.)", "http://no.gd/boobs.gif"].shuffle.first
 end
 
 on :channel, /^artme (.*?)$/i do |art|
