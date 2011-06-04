@@ -167,7 +167,7 @@ on :channel, /^artme (.*?)$/i do |art|
   end
 end
 
-on :channel, /^seen (.*?)$/i do |user|
+on :channel, /^seen (\w+)$/i do |user|
   log_user_seen(nick)
 
   user = user.downcase
