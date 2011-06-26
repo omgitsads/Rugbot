@@ -60,9 +60,14 @@ on :channel, /^trollface$/i do
   msg channel, ["http://no.gd/troll.png", "http://no.gd/trolldance.gif"].shuffle.first
 end
 
-on :channel, /^boner/ do
+on :channel, /^boner/i do
   log_user_seen(nick)
-  msg channel, "http://files.myopera.com/coxy/albums/106123/trex-boner.jpg"
+  msg channel, ["http://files.myopera.com/coxy/albums/106123/trex-boner.jpg", "http://no.gd/badger.gif"].shuffle.first
+end
+
+on :channel, /^badger/i do
+  log_user_seen(nick)
+  msg channel, "http://no.gd/badger2.gif"
 end
 
 on :channel, /^(help|commands)$/i do
@@ -71,7 +76,7 @@ on :channel, /^(help|commands)$/i do
   msg channel, "roll, nextmeet, artme <string>, stab <nick>, seen <nick>, ram, uptime, 37status, boobs, meme, trollface, dywj, dance"
 end
 
-on :channel, /dywj/ do
+on :channel, /dywj/i do
   log_user_seen(nick)
 
   msg channel, "DAMN YOU WILL JESSOP!!!"
@@ -145,7 +150,7 @@ on :channel, /^stab (.*?)$/i do |user|
   action channel, "stabs #{user}"
 end
 
-on :channel, /^b(oo|ew)bs$/ do |user|
+on :channel, /^b(oo|ew)bs$/i do |user|
   log_user_seen(nick)
 
   msg channel, ["(.)(.)", "http://no.gd/boobs.gif"].shuffle.first
