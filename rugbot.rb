@@ -112,7 +112,8 @@ on :channel, /^nextmeet/i do
     # Grab ze string from ze website
     entry_title = Nokogiri::HTML(Curl::Easy.perform("http://nwrug.org/events/").body_str).css('.first_entry h3').first.content.gsub("\342\200\223", "-").strip
     # Figure out the details we want to return
-    meeting_date, meeting_title = entry_title.split(" - ")
+    meeting_date, *meeting_title = entry_title.split(" - ")
+    meeting_title = meeting_title.join(" - ")
 
     if (d = Date.parse(meeting_date)) && d >= Date.today
       nwrug = d
