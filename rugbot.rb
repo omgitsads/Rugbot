@@ -55,9 +55,9 @@ on :channel, /^meme ([A-Z_\-]+) (.+)$/i do |meme, words|
   # end
 end
 
-on :channel, /^trollface$/i do
+on :channel, /^troll(face)?$/i do
   log_user_seen(nick)
-  msg channel, ["http://no.gd/troll.png", "http://no.gd/trolldance.gif"].shuffle.first
+  msg channel, ["http://no.gd/troll.png", "http://no.gd/trolldance.gif", "http://caius.name/images/phone_troll.jpg"].shuffle.first
 end
 
 on :channel, /^boner/i do
