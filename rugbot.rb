@@ -30,11 +30,14 @@ on :connect do
 end
 
 on :channel, /^dance$/i do
-  if [0,1].shuffle.first == 1
+  case [0,1,2].shuffle.first
+  when 0
     msg channel, "EVERYBODY DANCE NOW!"
     action channel, "does the funky chicken"
-  else
+  when 1
     msg channel, "http://no.gd/caiusboogie.gif"
+  when 2
+    msg channel, "http://i.imgur.com/rDDjz.gif"
   end
 end
 
