@@ -242,7 +242,7 @@ on :channel, %r{(https?://heello.com/[^/]+/\d+)} do |heello|
       curl.follow_location = true
     end
 
-    doc = Nokogiri::HTML(easy.body_str)
+    doc = Nokogiri::HTML(req.body_str)
     body = doc.css("#single-ping").first.content
     username = doc.css("#name").first.content
     msg channel, "#{username}: #{body}"
