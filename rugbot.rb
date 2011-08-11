@@ -233,6 +233,25 @@ on :channel, /https?:\/\/twitter\.com(?:\/#!)?\/([^\/]+?)(?:$|\s)/i do |user|
   end
 end
 
+# http://heello.com/caius/168024
+# https://heello.com/caius/168024
+# and trailing /
+on :channel, %r{(https?://heello.com/[^/]+/\d+)} do |heello|
+  begin
+    req = Curl::Easy.perform(heello) do |curl|
+      curl.follow_location = true
+    end
+
+    doc = Nokogiri::HTML(easy.body_str)
+    body = doc.css("#single-ping").first.content
+    username = doc.css("#name").first.content
+    msg channel, "#{username}: #{body}"
+  rescue StandardError => e
+    puts "Got error fetching heello status: #{e}"
+  end
+
+end
+
 on :channel, /(https?:\/\/\S+)/i do |url|
   log_user_seen(nick)
 
