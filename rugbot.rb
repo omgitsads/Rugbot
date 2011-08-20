@@ -2,16 +2,8 @@
 require 'rubygems'
 require "bundler/setup"
 
-require 'isaac'
-require 'twitter'
-require 'curb'
-require 'nokogiri'
-require 'cgi'
-require 'json'
-require "time"
-require "uri"
-require 'meme'
-require 'imgur'
+# Why yes, let's be astonishingly lazy
+Bundler.require :default
 
 require File.expand_path("rugbot_helper", File.dirname(__FILE__))
 
