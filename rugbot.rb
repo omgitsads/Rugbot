@@ -33,21 +33,11 @@ on :channel, /^dance$/i do
   end
 end
 
-on :channel, /^meme ([A-Z_\-]+) (.+)$/i do |meme, words|
+on :channel, /^meme/i do
   log_user_seen(nick)
-  msg channel, "meme is busted, someone should fix it"
-  # begin
-  #   meme = Meme.new(meme)
-  # 
-  #   imgur = Imgur::API.new(IMGUR_API_KEY)
-  #   im = imgur.upload_from_url(meme.generate(words))
-  #   msg channel, im['original_image']
-  # rescue Meme::Error
-  #   meme = Meme.new('Y_U_NO')
-  #   imgur = Imgur::API.new(IMGUR_API_KEY)
-  #   im = imgur.upload_from_url(meme.generate("smart, #{nick}"))
-  #   msg channel, im['original_image']
-  # end
+  # There are no decent meme web services, nor gems wrapping the shitty ones.
+  # -- Caius, 20th Aug 2011
+  msg channel, "Y U NO FIX MEME?!"
 end
 
 on :channel, /^troll(face)?$/i do
@@ -68,7 +58,7 @@ end
 on :channel, /^(help|commands)$/i do
   log_user_seen(nick)
 
-  msg channel, "roll, nextmeet, artme <string>, stab <nick>, seen <nick>, ram, uptime, 37status, boobs, meme, trollface, dywj, dance"
+  msg channel, "roll, nextmeet, artme <string>, stab <nick>, seen <nick>, ram, uptime, 37status, boobs, trollface, dywj, dance"
 end
 
 on :channel, /dywj/i do
