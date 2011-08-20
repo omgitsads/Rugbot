@@ -215,7 +215,7 @@ on :channel, /https?:\/\/twitter.com(?:\/#!)?\/[\w-]+\/status(?:es)?\/(\d+)/i do
   rescue Twitter::Error => e
     puts "Caught #{e}"
   end
-  msg channel, "#{tweet.text} - #{user.name} (#{user.screen_name})" if tweet
+  msg channel, "#{CGI.unescapeHTML(tweet.text)} - #{user.name} (#{user.screen_name})" if tweet
 end
 
 # http://twitter.com/stealthygecko
@@ -227,7 +227,7 @@ on :channel, /https?:\/\/twitter\.com(?:\/#!)?\/([^\/]+?)(?:$|\s)/i do |user|
   begin
    u = Twitter.user(user)
    msg channel, "#{u.name} (#{u.screen_name}) - #{u.description} #{u.profile_image_url}"
-   msg channel, "Last status: #{u.status.text}"
+   msg channel, "Last status: #{CGI.unescapeHTML(u.status.text)}"
   rescue => e
    puts "Caught #{e}"
   end
