@@ -123,6 +123,10 @@ on :channel, /^nextmeet/i do
   msg channel, [date_string, details].compact.join(" - ")
 end
 
+on :channel, /^nextmeat/i do
+  msg channel, "BACNOM"
+end
+
 on :channel, /^.* st[aа]bs/i do
   log_user_seen(nick)
 
