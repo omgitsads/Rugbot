@@ -23,6 +23,12 @@ on :connect do
   join "#nwrug"
 end
 
+on :channel, /^(help|commands)$/i do
+  log_user_seen(nick)
+
+  msg channel, "roll, nextmeet, artme <string>, stab <nick>, seen <nick>, ram, uptime, 37status, boobs, trollface, dywj, dance, mustachify"
+end
+
 on :channel, /^dance$/i do
   case [0,1,2].shuffle.first
   when 0
@@ -55,12 +61,6 @@ end
 on :channel, /^badger/i do
   log_user_seen(nick)
   msg channel, "http://no.gd/badger2.gif"
-end
-
-on :channel, /^(help|commands)$/i do
-  log_user_seen(nick)
-
-  msg channel, "roll, nextmeet, artme <string>, stab <nick>, seen <nick>, ram, uptime, 37status, boobs, trollface, dywj, dance"
 end
 
 on :channel, /dywj/i do
