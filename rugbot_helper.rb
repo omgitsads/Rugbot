@@ -81,7 +81,7 @@ def image_for phrase
   end
 
   begin
-    url = "http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=#{CGI::escape(phrase)}"
+    url = "http://ajax.googleapis.com/ajax/services/search/images?v=1.0&safe=off&q=#{CGI::escape(phrase)}"
     doc = JSON.parse(Curl::Easy.perform(url).body_str)
     URI::unescape(doc["responseData"]["results"][0]["url"])
   rescue
