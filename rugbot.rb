@@ -147,20 +147,11 @@ on :channel, /^b(oo|ew)bs$/i do |user|
   msg channel, ["(.)(.)", "http://no.gd/boobs.gif"].shuffle.first
 end
 
-on :channel, /^artme (.*?)$/i do |art|
+on :channel, /^artme (.*?)$/i do |phrase|
   log_user_seen(nick)
 
-  begin
-    if art == 'random'
-      lns = File.readlines("/usr/share/dict/words")
-      art = lns[rand(lns.size)].strip
-    end
-    url = "http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=#{CGI::escape(art)}"
-    doc = JSON.parse(Curl::Easy.perform(url).body_str)
-    msg channel, URI::unescape(doc["responseData"]["results"][0]["url"])
-  rescue
-    msg channel, "No result"
-  end
+  response = image_for(phrase)
+  msg channel, (response.nil? ? "Nothing found" : response)
 end
 
 on :channel, /^seen (\w+)$/i do |user|

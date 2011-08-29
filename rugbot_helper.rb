@@ -73,3 +73,18 @@ def nwrug_meet_for year, month
 
   nwrug
 end
+
+def image_for phrase
+  if phrase == 'random'
+    lns = File.readlines("/usr/share/dict/words")
+    phrase = lns[rand(lns.size)].strip
+  end
+
+  begin
+    url = "http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=#{CGI::escape(phrase)}"
+    doc = JSON.parse(Curl::Easy.perform(url).body_str)
+    URI::unescape(doc["responseData"]["results"][0]["url"])
+  rescue
+    nil
+  end
+end
