@@ -26,7 +26,11 @@ end
 on :channel, /^(help|commands)$/i do
   log_user_seen(nick)
 
-  msg channel, "roll, nextmeet, artme <string>, stab <nick>, seen <nick>, ram, uptime, 37status, boobs, trollface, dywj, dance, mustachify"
+  msg channel, "roll, nextmeet, artme <string>, stab <nick>, seen <nick>, ram, uptime, 37status, boobs, trollface, dywj, dance, mustachify, stats"
+end
+
+on :channel, /^stats?$/ do
+  msg channel, "http://dev.hentan.eu/irc/nwrug.html"
 end
 
 on :channel, /^dance$/i do
