@@ -157,11 +157,15 @@ end
 
 # 'tache an existing URL
 on :channel, /^#{TASCHE} (http.*)$/ do |url|
+  log_user_seen(nick)
+
   msg channel, tasche(url)
 end
 
 # 'tache the artme image for a given phrase
 on :channel, /^#{TASCHE} (.*)$/ do |phrase|
+  log_user_seen(nick)
+
   img = image_for(phrase)
   msg channel, (img ? tasche(img) : "Nothing found")
 end
