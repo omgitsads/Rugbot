@@ -88,3 +88,7 @@ def image_for phrase
     nil
   end
 end
+
+def tasche url
+  "http://mustachify.me/?src=#{CGI::escape(url)}"
+end

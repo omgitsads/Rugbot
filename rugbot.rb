@@ -11,6 +11,7 @@ BOT_NAME = 'rugbot'
 BOT_REPO = 'caius/Rugbot'
 SEEN_LIST = {}
 IMGUR_API_KEY = "4cdab1b0d1c8831232d477302a981363"
+TASCHE = /(?:mus)?tas?ch(?:e|ify)/
 
 configure do |c|
   c.nick    = BOT_NAME
@@ -151,7 +152,18 @@ on :channel, /^artme (.*?)$/i do |phrase|
   log_user_seen(nick)
 
   response = image_for(phrase)
-  msg channel, (response.nil? ? "Nothing found" : response)
+  msg channel, (response ? response : "Nothing found")
+end
+
+# 'tache an existing URL
+on :channel, /^#{TASCHE} (http.*)$/ do |url|
+  msg channel, tasche(url)
+end
+
+# 'tache the artme image for a given phrase
+on :channel, /^#{TASCHE} (.*)$/ do |phrase|
+  img = image_for(phrase)
+  msg channel, (img ? tasche(img) : "Nothing found")
 end
 
 on :channel, /^seen (\w+)$/i do |user|
