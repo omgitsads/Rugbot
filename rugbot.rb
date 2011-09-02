@@ -267,6 +267,9 @@ end
 
 on :channel, /who broke rugbot/i do
   log_user_seen(nick)
+  
+  msg channel, "tomb broke me"
+=begin
   url = "https://api.github.com/repos/#{BOT_REPO}/commits?per_page=1"
 
   begin
@@ -280,6 +283,7 @@ on :channel, /who broke rugbot/i do
     msg channel, "Couldn't find who to blame, so I'm blaming…"
     action channel, "points at #{SEEN_LIST.keys.shuffle.first}"
   end
+=end
 end
 
 # Catchall for seen
