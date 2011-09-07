@@ -11,6 +11,8 @@ GEM
     faraday_middleware (0.3.1)
       faraday (~> 0.5.3)
     hashie (0.4.0)
+    httparty (0.7.4)
+      crack (= 0.1.8)
     imgur (0.2.0)
       crack (>= 0.1.4)
       curb (>= 0.5.4.0)
@@ -37,6 +39,7 @@ PLATFORMS
 
 DEPENDENCIES
   curb
+  httparty
   imgur
   isaac
   json

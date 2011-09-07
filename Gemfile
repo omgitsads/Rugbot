@@ -7,3 +7,4 @@ gem 'nokogiri'
 gem 'json'
 gem 'meme_generator', :require => 'meme'
 gem 'imgur'
+gem "httparty"
