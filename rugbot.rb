@@ -5,13 +5,16 @@ require "bundler/setup"
 # Why yes, let's be astonishingly lazy
 Bundler.require :default
 
-require File.expand_path("rugbot_helper", File.dirname(__FILE__))
-
 BOT_NAME = 'rugbot'
 BOT_REPO = 'caius/Rugbot'
 SEEN_LIST = {}
 IMGUR_API_KEY = "4cdab1b0d1c8831232d477302a981363"
+LAST_FM_API_KEY = "2a8aef209656ecfce46639a6dabe3e5e"
+LAST_FM_API_SECRET = "d1c4dd174709fc65343471f9696a02b3"
+LAST_FM_USERNAME_MAP = {/caius/i => "CaiusD"}
 TASCHE = /(?:mus)?tas?ch(?:e|ify)/
+
+require File.expand_path("rugbot_helper", File.dirname(__FILE__))
 
 configure do |c|
   c.nick    = BOT_NAME
@@ -26,11 +29,19 @@ end
 on :channel, /^(help|commands)$/i do
   log_user_seen(nick)
 
-  msg channel, "roll, nextmeet, artme <string>, stab <nick>, seen <nick>, ram, uptime, 37status, boobs, trollface, dywj, dance, mustachify, stats"
+  msg channel, "roll, nextmeet, artme <string>, stab <nick>, seen <nick>, ram, uptime, 37status, boobs, trollface, dywj, dance, mustachify, stats, last"
 end
 
 on :channel, /^stats?$/ do
   msg channel, "http://dev.hentan.eu/irc/nwrug.html"
+end
+
+on :channel, /^last ?(\w*)$/ do |username|
+  username ||= nick
+  if (( n = LAST_FM_USERNAME_MAP.each {|match, name| break(name) if username =~ match } ))
+    username = n
+  end
+  msg channel, LastFM.latest_track_for(username)
 end
 
 on :channel, /^dance$/i do

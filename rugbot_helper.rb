@@ -92,3 +92,23 @@ end
 def tasche url
   "http://mustachify.me/?src=#{CGI::escape(url)}"
 end
+
+require "rubygems"
+require "httparty"
+
+class LastFM
+  # todo: use curb
+  include HTTParty
+
+  base_uri "http://ws.audioscrobbler.com/2.0/"
+  format :xml
+  default_params :api_key => LAST_FM_API_KEY, :secret => LAST_FM_API_SECRET
+
+  def self.latest_track_for user
+    r = get("", :query => {:method => "user.getrecenttracks", :limit => 1, :user => user})["lfm"]["recenttracks"]
+    track = r["track"].first
+    # {"totalPages"=>"131866", "track"=>[{"artist"=>"Carpenters", "name"=>"Saturday", "nowplaying"=>"true", "url"=>"http://www.last.fm/music/Carpenters/_/Saturday", "mbid"=>nil, "streamable"=>"1", "album"=>"Carpenters", "image"=>["http://userserve-ak.last.fm/serve/34s/49298415.png", "http://userserve-ak.last.fm/serve/64s/49298415.png", "http://userserve-ak.last.fm/serve/126/49298415.png", "http://userserve-ak.last.fm/serve/300x300/49298415.png"]}, {"artist"=>"Carpenters", "name"=>"Let Me Be The One", "url"=>"http://www.last.fm/music/Carpenters/_/Let+Me+Be+The+One", "mbid"=>nil, "date"=>"7 Sep 2011, 10:37", "streamable"=>"0", "album"=>"The Carpenters", "image"=>["http://userserve-ak.last.fm/serve/34s/49298731.png", "http://userserve-ak.last.fm/serve/64s/49298731.png", "http://userserve-ak.last.fm/serve/126/49298731.png", "http://userserve-ak.last.fm/serve/300x300/49298731.png"]}], "perPage"=>"1", "total"=>"131866", "page"=>"1", "user"=>"CaiusD"}
+    "#{r["user"]} #{(track["nowplaying"] == "true") ? "is" : "was"} listening to #{track["name"]} by #{track["artist"]}"
+  end
+
+end
