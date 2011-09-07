@@ -40,11 +40,23 @@ on :channel, /^stats?$/ do
 end
 
 on :channel, /^last ?(\w*)$/ do |username|
-  username ||= nick
-  if (( n = LAST_FM_USERNAME_MAP.each {|match, name| break(name) if (match.is_a?(Regexp) ? username[match] : username == match) } ))
-    username = n
+  # Default to the user's nick
+  username = nick if username == nil || username == ""
+
+  # Remap the last.fm username according to our mappings hash
+  username = LAST_FM_USERNAME_MAP.inject(username) do |name, (match, new_name)|
+    if match.is_a?(Regexp) ? username[match] : username == match
+      name = new_name
+    end
+    name
   end
-  msg channel, LastFM.latest_track_for(username)
+
+  begin
+    msg channel, LastFM.latest_track_for(username)
+  rescue StandardError => e
+    puts "ERROR: Couldn't get last fm track for #{username}: #{e.inspect}"
+  end
+  
 end
 
 on :channel, /^dance$/i do

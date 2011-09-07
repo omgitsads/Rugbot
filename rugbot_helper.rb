@@ -106,9 +106,13 @@ class LastFM
 
   def self.latest_track_for user
     r = get("", :query => {:method => "user.getrecenttracks", :limit => 1, :user => user})["lfm"]["recenttracks"]
-    # Work around the stupidly inconsistent api response
-    track = r["track"].is_a?(Array) ? r["track"].first : r["track"]
-    "#{r["user"]} #{(track["nowplaying"] == "true") ? "is" : "was"} listening to #{track["name"]} by #{track["artist"]}"
+    if r && r["track"]
+      # Work around the stupidly inconsistent api response
+      track = r["track"].is_a?(Array) ? r["track"].first : r["track"]
+      "#{r["user"]} #{(track["nowplaying"] == "true") ? "is" : "was"} listening to #{track["name"]} by #{track["artist"]}"
+    else
+      "dunno"
+    end
   end
 
 end
