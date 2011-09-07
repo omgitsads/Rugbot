@@ -33,7 +33,11 @@ end
 on :channel, /^(help|commands)$/i do
   log_user_seen(nick)
 
-  msg channel, "roll, nextmeet, artme <string>, stab <nick>, seen <nick>, ram, uptime, 37status, boobs, trollface, dywj, dance, mustachify, stats, last"
+  msg channel, "roll, nextmeet, artme <string>, stab <nick>, seen <nick>, ram, uptime, 37status, boobs, trollface, dywj, dance, mustachify, stats, last, ping"
+end
+
+on :channel, /^(?:\.|!?\.?ping)$/ do
+  msg channel, "pong!"
 end
 
 on :channel, /^stats?$/ do
