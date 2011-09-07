@@ -38,7 +38,7 @@ end
 
 on :channel, /^last ?(\w*)$/ do |username|
   username ||= nick
-  if (( n = LAST_FM_USERNAME_MAP.each {|match, name| break(name) if username =~ match } ))
+  if (( n = LAST_FM_USERNAME_MAP.each {|match, name| break(name) if (match.is_a?(Regexp) ? username[match] : username == match) } ))
     username = n
   end
   msg channel, LastFM.latest_track_for(username)
