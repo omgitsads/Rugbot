@@ -12,9 +12,10 @@ IMGUR_API_KEY = "4cdab1b0d1c8831232d477302a981363"
 LAST_FM_API_KEY = "2a8aef209656ecfce46639a6dabe3e5e"
 LAST_FM_API_SECRET = "d1c4dd174709fc65343471f9696a02b3"
 LAST_FM_USERNAME_MAP = {
-  /caius/i => "CaiusD",
-  "tomb" => "tom0bell",
-  "djgraham" => "davidistesting"
+  /caius/i   => "CaiusD",
+  "tomb"     => "tom0bell",
+  "djgraham" => "davidistesting",
+  "j`ey"     => "cardologist"
 }
 TASCHE = /(?:mus)?tas?ch(?:e|ify)/
 
