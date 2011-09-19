@@ -105,6 +105,10 @@ on :channel, /dywj/i do
   msg channel, "DAMN YOU WILL JESSOP!!!"
 end
 
+on :channel, /\b[dh]erp\b/ do
+  msg channel, "http://caius.name/images/qs/herped-a-derp.png"
+end
+
 on :channel, /^roll ([0-9]*)$/i do |sides|
   log_user_seen(nick)
   sides = 6 unless sides
