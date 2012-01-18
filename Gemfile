@@ -1,6 +1,8 @@
 source :rubygems
 
-gem 'isaac'
+gem 'scamp', :git => 'git://github.com/wjessop/Scamp.git', :branch => '2.0'
+gem 'scamp-irc', :git => 'git://github.com/omgitsads/scamp-irc.git'
+
 gem 'twitter'
 gem 'curb'
 gem 'nokogiri'
